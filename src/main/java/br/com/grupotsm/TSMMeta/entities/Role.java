@@ -3,9 +3,12 @@ package br.com.grupotsm.TSMMeta.entities;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "tb_role")
-public class Role implements GrantedAuthority {
+public class Role implements GrantedAuthority, Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
