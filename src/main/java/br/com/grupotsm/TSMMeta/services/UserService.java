@@ -2,6 +2,7 @@ package br.com.grupotsm.TSMMeta.services;
 
 import br.com.grupotsm.TSMMeta.DTO.UserDTO;
 import br.com.grupotsm.TSMMeta.DTO.UserNewDTO;
+import br.com.grupotsm.TSMMeta.DTO.UserUpdateDTO;
 import br.com.grupotsm.TSMMeta.entities.User;
 import br.com.grupotsm.TSMMeta.repositories.UserRepository;
 import br.com.grupotsm.TSMMeta.services.exceptions.ObjectNotFoundException;
@@ -13,9 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -40,20 +38,30 @@ public class UserService implements UserDetailsService {
         return obj.map(UserDTO::new);
     }
 
-    public UserDTO find(Long id) {
-        User obj = repository.findById(id).orElseThrow(() -> {
+    protected User find(Long id) {
+        return repository.findById(id).orElseThrow(() -> {
             throw new ObjectNotFoundException(id, User.class);
         });
+    }
+    public UserDTO findDTO(Long id) {
+        User obj = find(id);
         return new UserDTO(obj);
     }
 
-    public UserDTO insert(UserNewDTO newDto) {
-        User obj = fromDto(newDto);
+    public UserDTO insert(UserNewDTO dto) {
+        User obj = fromDto(dto);
         obj = repository.save(obj);
 
         return new UserDTO(obj);
     }
 
+    public UserDTO update(Long id, UserUpdateDTO dto) {
+        User obj = find(id);
+        fromDto(obj, dto);
+        obj = repository.save(obj);
+
+        return new UserDTO(obj);
+    }
     private User fromDto(UserNewDTO dto) {
         User obj = new User();
         obj.setName(dto.getName());
@@ -62,4 +70,10 @@ public class UserService implements UserDetailsService {
 
         return obj;
     }
+    private void fromDto(User obj, UserUpdateDTO dto) {
+        obj.setName(dto.getName() != null? dto.getName():obj.getName());
+        obj.setEmail(dto.getEmail() != null? dto.getEmail() : obj.getEmail());
+        obj.setPassword(dto.getPassword() != null? encoder.encode(dto.getPassword()):obj.getPassword());
+    }
+
 }
