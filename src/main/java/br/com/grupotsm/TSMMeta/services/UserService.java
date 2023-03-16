@@ -1,8 +1,8 @@
 package br.com.grupotsm.TSMMeta.services;
 
-import br.com.grupotsm.TSMMeta.DTO.UserDTO;
-import br.com.grupotsm.TSMMeta.DTO.UserNewDTO;
-import br.com.grupotsm.TSMMeta.DTO.UserUpdateDTO;
+import br.com.grupotsm.TSMMeta.DTO.users.UserDTO;
+import br.com.grupotsm.TSMMeta.DTO.users.UserNewDTO;
+import br.com.grupotsm.TSMMeta.DTO.users.UserUpdateDTO;
 import br.com.grupotsm.TSMMeta.entities.User;
 import br.com.grupotsm.TSMMeta.repositories.UserRepository;
 import br.com.grupotsm.TSMMeta.services.exceptions.ObjectNotFoundException;

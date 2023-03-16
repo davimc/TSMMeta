@@ -1,28 +1,33 @@
-package br.com.grupotsm.TSMMeta.DTO;
+package br.com.grupotsm.TSMMeta.DTO.users;
 
 import br.com.grupotsm.TSMMeta.entities.User;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class UserUpdateDTO {
+public class UserNewDTO {
 
+    @NotNull(message = "nome é necessário")
     @Size(min = 2, max = 45, message = "tamanho mínimo 2 e máximo 45")
     private String name;
+
+    @NotNull(message = "email é necessário")
     @Email(message = "formato de email incompatível")
     private String email;
 
+    @NotNull(message = "password é necessário")
     @Size(min = 6, max = 20, message = "tamanho mínimo 8, máximo 20")
     private String password;
 
-    public UserUpdateDTO() {
+    public UserNewDTO() {
     }
 
-    public UserUpdateDTO(String name, String email, String password) {
+    public UserNewDTO(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
-    public UserUpdateDTO(User obj) {
+    public UserNewDTO(User obj) {
         name = obj.getName();
         email = obj.getEmail();
         password = obj.getPassword();

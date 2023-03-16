@@ -1,8 +1,8 @@
 package br.com.grupotsm.TSMMeta.controllers;
 
-import br.com.grupotsm.TSMMeta.DTO.UserDTO;
-import br.com.grupotsm.TSMMeta.DTO.UserNewDTO;
-import br.com.grupotsm.TSMMeta.DTO.UserUpdateDTO;
+import br.com.grupotsm.TSMMeta.DTO.users.UserDTO;
+import br.com.grupotsm.TSMMeta.DTO.users.UserNewDTO;
+import br.com.grupotsm.TSMMeta.DTO.users.UserUpdateDTO;
 import br.com.grupotsm.TSMMeta.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

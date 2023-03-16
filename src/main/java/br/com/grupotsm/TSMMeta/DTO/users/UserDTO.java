@@ -1,4 +1,4 @@
-package br.com.grupotsm.TSMMeta.DTO;
+package br.com.grupotsm.TSMMeta.DTO.users;
 
 import br.com.grupotsm.TSMMeta.entities.User;
 
