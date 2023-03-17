@@ -3,7 +3,8 @@ package br.com.grupotsm.TSMMeta.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +16,11 @@ public class Store implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @OneToMany(mappedBy = "currentStore")
+    private List<Employee> currentEmployees = new ArrayList<>();
+    @OneToMany(mappedBy = "originalStore")
+    private List<Employee> originalEmployees = new ArrayList<>();
     public Store() {
     }
     public Store(Long id, String name) {
@@ -36,6 +42,14 @@ public class Store implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Employee> getCurrentEmployeers() {
+        return currentEmployees;
+    }
+
+    public List<Employee> getOriginalEmployeers() {
+        return originalEmployees;
     }
 
     @Override
