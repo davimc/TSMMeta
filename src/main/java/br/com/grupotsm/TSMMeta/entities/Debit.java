@@ -18,14 +18,18 @@ public class Debit implements Serializable {
     private LocalDate date;
     private Double amount;
 
+    @ManyToOne
+    @JoinColumn(name = "goal_id")
+    private Goal goal;
     public Debit() {
     }
 
-    public Debit(Long id, String name, LocalDate date, Double amount) {
+    public Debit(Long id, String name, LocalDate date, Double amount, Goal goal) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.amount = amount;
+        this.goal = goal;
     }
 
     public Long getId() {
@@ -58,6 +62,14 @@ public class Debit implements Serializable {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public Goal getGoal() {
+        return goal;
+    }
+
+    public void setGoal(Goal goal) {
+        this.goal = goal;
     }
 
     @Override
