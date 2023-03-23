@@ -21,7 +21,7 @@ public class Goal implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "store_id")
-    private Store storeId;
+    private Store store;
 
     @OneToMany(mappedBy = "goal")
     private List<Debit> debits = new ArrayList<>();
@@ -29,11 +29,11 @@ public class Goal implements Serializable {
     public Goal() {
     }
 
-    public Goal(Long id, LocalDate date, Double amount, Store storeId) {
+    public Goal(Long id, LocalDate date, Double amount, Store store) {
         this.id = id;
         this.date = date;
         this.amount = amount;
-        this.storeId = storeId;
+        this.store = store;
     }
 
     public Long getId() {
@@ -60,12 +60,12 @@ public class Goal implements Serializable {
         this.amount = amount;
     }
 
-    public Store getStoreId() {
-        return storeId;
+    public Store getStore() {
+        return store;
     }
 
-    public void setStoreId(Store storeId) {
-        this.storeId = storeId;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public List<Debit> getDebits() {
