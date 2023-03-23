@@ -16,11 +16,13 @@ public class Store implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
     @OneToMany(mappedBy = "currentStore")
     private List<Employee> currentEmployees = new ArrayList<>();
     @OneToMany(mappedBy = "originalStore")
     private List<Employee> originalEmployees = new ArrayList<>();
+    @OneToMany(mappedBy = "store")
+    private List<Store> goals = new ArrayList<>();
+
     public Store() {
     }
     public Store(Long id, String name) {
@@ -47,9 +49,12 @@ public class Store implements Serializable {
     public List<Employee> getCurrentEmployeers() {
         return currentEmployees;
     }
-
     public List<Employee> getOriginalEmployeers() {
         return originalEmployees;
+    }
+
+    public List<Employee> getCurrentEmployees() {
+        return currentEmployees;
     }
 
     @Override
