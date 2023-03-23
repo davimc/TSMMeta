@@ -1,11 +1,8 @@
 package br.com.grupotsm.TSMMeta.DTO.goals;
 
-import br.com.grupotsm.TSMMeta.entities.Debit;
 import br.com.grupotsm.TSMMeta.entities.Goal;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -28,7 +25,7 @@ public class GoalNewDTO {
 
     public GoalNewDTO(Goal obj) {
         date = obj.getDate();
-        storeId = obj.getStoreId().getId();
+        storeId = obj.getStore().getId();
     }
 
     public LocalDate getDate() {

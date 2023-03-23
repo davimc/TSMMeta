@@ -1,10 +1,8 @@
 package br.com.grupotsm.TSMMeta.DTO.goals;
 
-import br.com.grupotsm.TSMMeta.entities.Debit;
 import br.com.grupotsm.TSMMeta.entities.Goal;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.Month;
 
 public class GoalDTO implements Serializable {
@@ -31,7 +29,7 @@ public class GoalDTO implements Serializable {
         month = obj.getDate().getMonth();
         year = obj.getDate().getYear();
         amount = obj.getAmount();
-        store = obj.getStoreId().getName();
+        store = obj.getStore().getName();
     }
 
     public Long getId() {
