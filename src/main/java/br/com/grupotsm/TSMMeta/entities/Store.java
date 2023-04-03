@@ -21,7 +21,7 @@ public class Store implements Serializable {
     @OneToMany(mappedBy = "originalStore")
     private List<Employee> originalEmployees = new ArrayList<>();
     @OneToMany(mappedBy = "store")
-    private List<Store> goals = new ArrayList<>();
+    private List<Goal> goals = new ArrayList<>();
 
     public Store() {
     }

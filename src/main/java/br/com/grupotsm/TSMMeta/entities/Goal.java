@@ -23,9 +23,6 @@ public class Goal implements Serializable {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @OneToMany(mappedBy = "goal")
-    private List<Debit> debits = new ArrayList<>();
-
     public Goal() {
     }
 
@@ -68,9 +65,6 @@ public class Goal implements Serializable {
         this.store = store;
     }
 
-    public List<Debit> getDebits() {
-        return debits;
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -25,4 +25,6 @@ INSERT INTO tb_goal (date, amount, store_id) VALUES ('2023-01-01', 50005.90, 3);
 INSERT INTO tb_goal (date, amount, store_id) VALUES ('2023-01-01', 10101.01, 4);
 INSERT INTO tb_goal (date, amount, store_id) VALUES ('2023-02-01', 85000.00, 1);
 
-INSERT INTO tb_debit (name, date, amount,goal_id) VALUES ('Aluguel', '2023-03-03', 1300.50,1);
+INSERT INTO tb_debit (name, date, amount,store_id) VALUES ('Aluguel', '2023-03-03', 10300.50,1);
+INSERT INTO tb_debit (name, date, amount,store_id) VALUES ('Agua', '2023-03-14', 7300.77,1);
+INSERT INTO tb_debit (name, date, amount,store_id) VALUES ('Luz', '2023-03-12', 2000.20,1);
