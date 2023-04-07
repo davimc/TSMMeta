@@ -16,7 +16,7 @@ public class GoalService {
     @Autowired
     private GoalRepository repository;
     @Autowired
-    private StoreService storeService;
+    private DebitService debitService;
 
     public Page<GoalDTO> findAll(Pageable pageable) {
         Page<Goal> obj = repository.findAll(pageable);
