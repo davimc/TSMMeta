@@ -6,16 +6,35 @@ import br.com.grupotsm.TSMMeta.DTO.stores.StoreUpdateDTO;
 import br.com.grupotsm.TSMMeta.entities.Store;
 import br.com.grupotsm.TSMMeta.repositories.StoreRepository;
 import br.com.grupotsm.TSMMeta.services.exceptions.ObjectNotFoundException;
+import br.com.grupotsm.TSMMeta.utils.DateHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 
 @Service
 public class StoreService {
 
     @Autowired
     private StoreRepository repository;
+
+    @Autowired
+    private DebitService debitService;
+
+    public Double mouthlyExpenses (Long storeId, LocalDate date) {
+        Store obj = find(storeId);
+        date = DateHandler.getFirstDayOfMonth(date);
+        LocalDate end = DateHandler.getLastDayOfMonth(date);
+
+        Double debits = debitService.debitsOfMonth(obj, date, end);
+
+
+        return debits;
+    }
+
 
     public Page<StoreDTO> findAll(Pageable pageable) {
         Page<Store> obj = repository.findAll(pageable);
