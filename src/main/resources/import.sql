@@ -32,3 +32,9 @@ INSERT INTO tb_debit (name, date, amount,store_id) VALUES ('Luz', '2023-03-12', 
 INSERT INTO tb_tax (name, percentage) VALUES ('ICMS', 17.0);
 INSERT INTO tb_tax (name, percentage) VALUES ('ISS', 22.5);
 INSERT INTO tb_tax (name, percentage) VALUES ('IMTS', 0.3);
+
+INSERT INTO tb_taxes_stores (tax_id, store_id) VALUES (1,1);
+INSERT INTO tb_taxes_stores (tax_id, store_id) VALUES (2,1);
+INSERT INTO tb_taxes_stores (tax_id, store_id) VALUES (3,1);
+INSERT INTO tb_taxes_stores (tax_id, store_id) VALUES (1,2);
+INSERT INTO tb_taxes_stores (tax_id, store_id) VALUES (2,2);

@@ -18,7 +18,8 @@ public class Tax implements Serializable {
     private Double percentage;
 
     @ManyToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "tax_id"),
+    @JoinTable(name = "tb_taxes_stores",
+            joinColumns = @JoinColumn(name = "tax_id"),
         inverseJoinColumns = @JoinColumn(name = "store_id"))
     private List<Store> stores = new ArrayList<>();
 
