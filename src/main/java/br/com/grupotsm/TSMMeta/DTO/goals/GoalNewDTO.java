@@ -1,6 +1,7 @@
 package br.com.grupotsm.TSMMeta.DTO.goals;
 
 import br.com.grupotsm.TSMMeta.entities.Goal;
+import br.com.grupotsm.TSMMeta.entities.Store;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 
@@ -42,5 +43,16 @@ public class GoalNewDTO {
 
     public void setStoreId(Long storeId) {
         this.storeId = storeId;
+    }
+
+    public static Goal fromDto(GoalNewDTO dto, Store store, Double target) {
+        Goal obj = new Goal();
+
+        obj.setDate(dto.getDate());
+        obj.setStore(store);
+        obj.setAmount(0.0);
+        obj.setTarget(target);
+
+        return obj;
     }
 }
