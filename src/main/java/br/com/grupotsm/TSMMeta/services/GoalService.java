@@ -3,6 +3,7 @@ package br.com.grupotsm.TSMMeta.services;
 import br.com.grupotsm.TSMMeta.DTO.goals.GoalDTO;
 import br.com.grupotsm.TSMMeta.DTO.goals.GoalNewDTO;
 import br.com.grupotsm.TSMMeta.entities.Goal;
+import br.com.grupotsm.TSMMeta.entities.Store;
 import br.com.grupotsm.TSMMeta.repositories.GoalRepository;
 import br.com.grupotsm.TSMMeta.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,9 @@ public class GoalService {
     @Autowired
     private GoalRepository repository;
     @Autowired
-    private DebitService debitService;
+    private SpendingService spendingService;
+    @Autowired
+    private StoreService storeService;
 
     public Page<GoalDTO> findAll(Pageable pageable) {
         Page<Goal> obj = repository.findAll(pageable);
@@ -32,23 +35,19 @@ public class GoalService {
         Goal obj = find(id);
         return new GoalDTO(obj);
     }
-    /* todo
-        * pensar em como será concretizado esse cálculo
+
     public GoalDTO insert(GoalNewDTO dto) {
-        Goal obj = fromDto(dto);
+        Store store = storeService.find(dto.getStoreId());
+        Double target = spendingService.calculateExpenses(store, dto.getDate());
+        Goal obj = GoalNewDTO.fromDto(dto,store, target);
+
         obj = repository.save(obj);
 
         return new GoalDTO(obj);
     }
-    private Goal fromDto(GoalNewDTO dto) {
-        Goal obj = new Goal();
-        obj.setDate(dto.getDate());
-        obj.setStoreId(storeService.find(dto.getStoreId()));
 
-        return obj;
-    }
 
-    public GoalDTO update(Long id, GoalUpdateDTO dto) {
+    /*public GoalDTO update(Long id, GoalUpdateDTO dto) {
         Goal obj = find(id);
         fromDto(obj, dto);
         obj = repository.save(obj);

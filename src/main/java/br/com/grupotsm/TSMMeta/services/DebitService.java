@@ -6,6 +6,7 @@ import br.com.grupotsm.TSMMeta.entities.Debit;
 import br.com.grupotsm.TSMMeta.entities.Store;
 import br.com.grupotsm.TSMMeta.repositories.DebitRepository;
 import br.com.grupotsm.TSMMeta.services.exceptions.ObjectNotFoundException;
+import br.com.grupotsm.TSMMeta.utils.DateHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,11 +40,18 @@ public class DebitService {
     }
 
     protected Double debitsOfMonth(Store store, LocalDate first, LocalDate end) {
-
         List<Debit> obj = repository.findByDateBetween(store.getId(), first, end);
         Double total = 0.0;
+
         return obj.stream().mapToDouble(d -> d.getAmount()).sum();
     }
+    protected Double sumDebits(Store store, LocalDate date) {
+        LocalDate end = DateHandler.getLastDayOfMonth(date);
+        date = DateHandler.getFirstDayOfMonth(date);
+
+        return debitsOfMonth(store, date, end);
+    }
+
     public DebitDTO insert(DebitNewDTO dto) {
         Debit obj = fromDto(dto);
         obj = repository.save(obj);

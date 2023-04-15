@@ -29,14 +29,14 @@ public class GoalController {
         return ResponseEntity.ok().body(service.findDTO(id));
     }
 
-    /*todo GoalService 36:5
+
     @PostMapping
     public ResponseEntity<GoalDTO> insert(@Valid @RequestBody GoalNewDTO newDto) {
         GoalDTO dto = service.insert(newDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
-    }*/
+    }
 
    /*
     @PutMapping("/{id}")

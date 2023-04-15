@@ -35,6 +35,10 @@ public class TaxService {
 
         return repository.findByStores(store);
     }
+    protected Double sumTaxes(Store store) {
+
+        return findByStore(store).stream().mapToDouble(t -> t.getPercentage()).sum();
+    }
     public TaxDTO findDTO(Long id) {
         Tax obj = find(id);
         return new TaxDTO(obj);
