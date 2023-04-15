@@ -24,18 +24,6 @@ public class StoreService {
     @Autowired
     private DebitService debitService;
 
-    public Double mouthlyExpenses (Long storeId, LocalDate date) {
-        Store obj = find(storeId);
-        date = DateHandler.getFirstDayOfMonth(date);
-        LocalDate end = DateHandler.getLastDayOfMonth(date);
-
-        Double debits = debitService.debitsOfMonth(obj, date, end);
-
-
-        return debits;
-    }
-
-
     public Page<StoreDTO> findAll(Pageable pageable) {
         Page<Store> obj = repository.findAll(pageable);
         return obj.map(StoreDTO::new);
