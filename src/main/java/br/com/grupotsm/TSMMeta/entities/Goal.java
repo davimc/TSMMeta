@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,8 +15,8 @@ public class Goal implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate date;
+    private Double target;
     private Double amount;
-
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
@@ -26,9 +24,9 @@ public class Goal implements Serializable {
     public Goal() {
     }
 
-    public Goal(Long id, LocalDate date, Double amount, Store store) {
-        this.id = id;
+    public Goal(LocalDate date, Double target, Double amount, Store store) {
         this.date = date;
+        this.target = target;
         this.amount = amount;
         this.store = store;
     }
@@ -47,6 +45,14 @@ public class Goal implements Serializable {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Double getTarget() {
+        return target;
+    }
+
+    public void setTarget(Double target) {
+        this.target = target;
     }
 
     public Double getAmount() {

@@ -10,16 +10,18 @@ public class GoalDTO implements Serializable {
     private Long id;
     private Month month;
     private Integer year;
+    private Double target;
     private Double amount;
 
     private String store;
     public GoalDTO() {
     }
 
-    public GoalDTO(Long id, Month month, Integer year, Double amount, String store) {
+    public GoalDTO(Long id, Month month, Integer year, Double target, Double amount, String store) {
         this.id = id;
         this.month = month;
         this.year = year;
+        this.target = target;
         this.amount = amount;
         this.store = store;
     }
@@ -28,6 +30,7 @@ public class GoalDTO implements Serializable {
         id = obj.getId();
         month = obj.getDate().getMonth();
         year = obj.getDate().getYear();
+        target = obj.getTarget();
         amount = obj.getAmount();
         store = obj.getStore().getName();
     }
@@ -48,7 +51,12 @@ public class GoalDTO implements Serializable {
         return store;
     }
 
+    public Double getTarget() {
+        return target;
+    }
+
     public Double getAmount() {
         return amount;
     }
+
 }
