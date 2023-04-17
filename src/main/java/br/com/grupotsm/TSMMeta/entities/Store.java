@@ -23,6 +23,9 @@ public class Store implements Serializable {
     @OneToMany(mappedBy = "store")
     private List<Goal> goals = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "stores")
+    List<Tax> taxes = new ArrayList<>();
+
     public Store() {
     }
     public Store(Long id, String name) {
@@ -55,6 +58,14 @@ public class Store implements Serializable {
 
     public List<Employee> getCurrentEmployees() {
         return currentEmployees;
+    }
+
+    public List<Goal> getGoals() {
+        return goals;
+    }
+
+    public List<Tax> getTaxes() {
+        return taxes;
     }
 
     @Override
