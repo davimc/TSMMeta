@@ -20,10 +20,10 @@ INSERT INTO tb_employee (name, salary, position, admission_Date, current_id, ori
 INSERT INTO tb_employee (name, salary, position, admission_Date, current_id, original_id) VALUES ('malica', 1200.0, 'Garçom', '2023-03-16', 1,1);
 
 INSERT INTO tb_goal (date, amount, store_id) VALUES ('2023-01-01', 85000.00, 1);
-INSERT INTO tb_goal (date, amount, store_id) VALUES ('2023-01-01', 69020.30, 2);
-INSERT INTO tb_goal (date, amount, store_id) VALUES ('2023-01-01', 50005.90, 3);
-INSERT INTO tb_goal (date, amount, store_id) VALUES ('2023-01-01', 10101.01, 4);
-INSERT INTO tb_goal (date, amount, store_id) VALUES ('2023-02-01', 85000.00, 1);
+INSERT INTO tb_goal (date, amount, store_id) VALUES ('2023-02-01', 69020.30, 2);
+INSERT INTO tb_goal (date, amount, store_id) VALUES ('2022-01-01', 50005.90, 3);
+INSERT INTO tb_goal (date, amount, store_id) VALUES ('2022-03-01', 10101.01, 4);
+INSERT INTO tb_goal (date, amount, store_id) VALUES ('2022-02-01', 85000.00, 1);
 
 INSERT INTO tb_debit (name, date, amount,store_id) VALUES ('Aluguel', '2023-03-03', 10300.50,1);
 INSERT INTO tb_debit (name, date, amount,store_id) VALUES ('Agua', '2023-03-14', 7300.77,1);
