@@ -53,18 +53,10 @@ public class DebitService {
     }
 
     public DebitDTO insert(DebitNewDTO dto) {
-        Debit obj = fromDto(dto);
+        Debit obj = DebitNewDTO.fromDto(dto);
         obj = repository.save(obj);
 
         return new DebitDTO(obj);
-    }
-    private Debit fromDto(DebitNewDTO dto) {
-        Debit obj = new Debit();
-        obj.setName(dto.getName());
-        obj.setAmount(dto.getAmount());
-        obj.setDate(dto.getDate());
-
-        return obj;
     }
     /*
 

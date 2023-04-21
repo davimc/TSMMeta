@@ -1,5 +1,6 @@
 package br.com.grupotsm.TSMMeta.entities;
 
+import br.com.grupotsm.TSMMeta.entities.enums.DebitStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_debit")
+@Inheritance
 public class Debit implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -17,18 +19,19 @@ public class Debit implements Serializable {
     private String name;
     private LocalDate date;
     private Double amount;
-
+    private Integer status;
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
     public Debit() {
     }
 
-    public Debit(Long id, String name, LocalDate date, Double amount, Store store) {
+    public Debit(Long id, String name, LocalDate date, Double amount, DebitStatus status, Store store) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.amount = amount;
+        this.status = status.getCod();
         this.store = store;
     }
 
@@ -62,6 +65,14 @@ public class Debit implements Serializable {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public DebitStatus getStatus() {
+        return DebitStatus.toEnum(status);
+    }
+
+    public void setStatus(DebitStatus status) {
+        this.status = status.getCod();
     }
 
     public Store getStore() {

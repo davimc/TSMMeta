@@ -2,6 +2,7 @@ package br.com.grupotsm.TSMMeta.DTO.debits;
 
 import br.com.grupotsm.TSMMeta.entities.Debit;
 import br.com.grupotsm.TSMMeta.entities.User;
+import br.com.grupotsm.TSMMeta.entities.enums.DebitStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -38,6 +39,7 @@ public class DebitNewDTO {
         date = obj.getDate();
         amount = obj.getAmount();
     }
+
     public String getName() {
         return name;
     }
@@ -60,5 +62,15 @@ public class DebitNewDTO {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public static Debit fromDto(DebitNewDTO dto) {
+        Debit obj = new Debit();
+        obj.setName(dto.getName());
+        obj.setAmount(dto.getAmount());
+        obj.setDate(dto.getDate());
+        obj.setStatus(DebitStatus.ACTIVE);
+
+        return obj;
     }
 }

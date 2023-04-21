@@ -1,6 +1,7 @@
 package br.com.grupotsm.TSMMeta.DTO.debits;
 
 import br.com.grupotsm.TSMMeta.entities.Debit;
+import br.com.grupotsm.TSMMeta.entities.enums.DebitStatus;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -11,22 +12,25 @@ public class DebitDTO implements Serializable {
     private String name;
     private LocalDate date;
     private Double amount;
+    private String status;
 
     public DebitDTO() {
     }
 
-    public DebitDTO(Long id, String name, LocalDate date, Double amount) {
+    public DebitDTO(Long id, String name, LocalDate date, Double amount, DebitStatus status) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.amount = amount;
+        this.status = status.getDesc();
     }
 
     public DebitDTO(Debit obj) {
-        this.id = obj.getId();
-        this.name = obj.getName();
-        this.date = obj.getDate();
-        this.amount = obj.getAmount();
+        id = obj.getId();
+        name = obj.getName();
+        date = obj.getDate();
+        amount = obj.getAmount();
+        status = obj.getStatus().getDesc();
     }
 
     public Long getId() {
@@ -43,5 +47,9 @@ public class DebitDTO implements Serializable {
 
     public Double getAmount() {
         return amount;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
