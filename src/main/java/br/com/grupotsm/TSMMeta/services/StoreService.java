@@ -21,8 +21,6 @@ public class StoreService {
     @Autowired
     private StoreRepository repository;
 
-    @Autowired
-    private DebitService debitService;
 
     public Page<StoreDTO> findAll(Pageable pageable) {
         Page<Store> obj = repository.findAll(pageable);
