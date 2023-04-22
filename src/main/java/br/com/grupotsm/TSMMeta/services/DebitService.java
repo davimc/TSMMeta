@@ -24,6 +24,9 @@ public class DebitService {
     @Autowired
     private DebitRepository repository;
 
+    @Autowired
+    private StoreService storeService;
+
     public Page<DebitDTO> findAll(Pageable pageable) {
         Page<Debit> obj = repository.findAll(pageable);
         return obj.map(DebitDTO::new);
@@ -55,6 +58,7 @@ public class DebitService {
     public DebitDTO insert(DebitNewDTO dto) {
         Debit obj = DebitNewDTO.fromDto(dto);
         obj = repository.save(obj);
+        obj.setStore(storeService.find(dto.getStoreId()));
 
         return new DebitDTO(obj);
     }

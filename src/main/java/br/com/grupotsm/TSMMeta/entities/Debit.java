@@ -9,7 +9,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_debit")
-@Inheritance
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", length = 1, discriminatorType = DiscriminatorType.CHAR)
+@DiscriminatorValue(value = "O")
 public class Debit implements Serializable {
     private static final long serialVersionUID = 1L;
 

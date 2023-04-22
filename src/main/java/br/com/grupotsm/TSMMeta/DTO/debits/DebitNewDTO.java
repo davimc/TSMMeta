@@ -1,13 +1,11 @@
 package br.com.grupotsm.TSMMeta.DTO.debits;
 
 import br.com.grupotsm.TSMMeta.entities.Debit;
+import br.com.grupotsm.TSMMeta.entities.DebitFrequent;
 import br.com.grupotsm.TSMMeta.entities.User;
 import br.com.grupotsm.TSMMeta.entities.enums.DebitStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -25,19 +23,21 @@ public class DebitNewDTO {
     @Positive
     private Double amount;
 
+    @PositiveOrZero(message = "a repetição da dívida precisa ser positiva")
+    private Integer frequency;
+
+    @NotNull(message = "é necessário informar a loja")
+    private Long storeId;
+
     public DebitNewDTO() {
     }
 
-    public DebitNewDTO(String name, LocalDate date, Double amount) {
+    public DebitNewDTO(String name, LocalDate date, Double amount, Integer frequency, Long storeId) {
         this.name = name;
         this.date = date;
         this.amount = amount;
-    }
-
-    public DebitNewDTO(Debit obj) {
-        name = obj.getName();
-        date = obj.getDate();
-        amount = obj.getAmount();
+        this.frequency = frequency;
+        this.storeId = storeId;
     }
 
     public String getName() {
@@ -64,12 +64,30 @@ public class DebitNewDTO {
         this.amount = amount;
     }
 
+    public Integer getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(Integer frequency) {
+        this.frequency = frequency;
+    }
+
+    public Long getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
+    }
+
     public static Debit fromDto(DebitNewDTO dto) {
-        Debit obj = new Debit();
+        Debit obj = dto.getFrequency() == null? new Debit() : new DebitFrequent();
         obj.setName(dto.getName());
         obj.setAmount(dto.getAmount());
         obj.setDate(dto.getDate());
         obj.setStatus(DebitStatus.ACTIVE);
+        if(obj instanceof DebitFrequent)
+            ((DebitFrequent) obj).setFrequency(dto.getFrequency());
 
         return obj;
     }
