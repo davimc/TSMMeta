@@ -1,5 +1,6 @@
 package br.com.grupotsm.TSMMeta.entities;
 
+import br.com.grupotsm.TSMMeta.entities.enums.TaxType;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -17,6 +18,8 @@ public class Tax implements Serializable {
     private String name;
     private Double percentage;
 
+    private Integer type;
+
     @ManyToMany
     @JoinTable(name = "tb_taxes_stores",
             joinColumns = @JoinColumn(name = "tax_id"),
@@ -26,9 +29,11 @@ public class Tax implements Serializable {
     public Tax() {
     }
 
-    public Tax(String name, Double percentage) {
+    public Tax(Long id, String name, Double percentage, TaxType type) {
+        this.id = id;
         this.name = name;
         this.percentage = percentage;
+        this.type = type.getCod();
     }
 
     public Long getId() {
@@ -57,6 +62,14 @@ public class Tax implements Serializable {
 
     public List<Store> getStores() {
         return stores;
+    }
+
+    public TaxType getType() {
+        return TaxType.toEnum(type);
+    }
+
+    public void setType(TaxType type) {
+        this.type = type.getCod();
     }
 
     @Override

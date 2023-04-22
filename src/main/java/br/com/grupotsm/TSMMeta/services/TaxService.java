@@ -25,7 +25,6 @@ public class TaxService {
     }
 
     protected Tax find(Long id) {
-
         return repository.findById(id).orElseThrow(() -> {
             throw new ObjectNotFoundException(id, Tax.class);
         });
