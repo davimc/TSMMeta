@@ -4,9 +4,7 @@ import br.com.grupotsm.TSMMeta.entities.enums.TaxType;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_tax")
@@ -24,7 +22,7 @@ public class Tax implements Serializable {
     @JoinTable(name = "tb_taxes_stores",
             joinColumns = @JoinColumn(name = "tax_id"),
         inverseJoinColumns = @JoinColumn(name = "store_id"))
-    private List<Store> stores = new ArrayList<>();
+    private Set<Store> stores = new HashSet<>();
 
     public Tax() {
     }
@@ -60,7 +58,7 @@ public class Tax implements Serializable {
         this.percentage = percentage;
     }
 
-    public List<Store> getStores() {
+    public Set<Store> getStores() {
         return stores;
     }
 

@@ -43,6 +43,13 @@ public class TaxService {
         return new TaxDTO(obj);
     }
 
+    protected Tax addStore(Long id, Store store) {
+        Tax obj = find(id);
+        obj.getStores().add(store);
+        obj = repository.save(obj);
+
+        return obj;
+    }
     public TaxDTO insert(TaxNewDTO dto) {
         Tax obj = TaxNewDTO.fromDto(dto);
         obj = repository.save(obj);

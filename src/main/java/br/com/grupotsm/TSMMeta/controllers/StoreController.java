@@ -3,7 +3,10 @@ package br.com.grupotsm.TSMMeta.controllers;
 import br.com.grupotsm.TSMMeta.DTO.stores.StoreDTO;
 import br.com.grupotsm.TSMMeta.DTO.stores.StoreNewDTO;
 import br.com.grupotsm.TSMMeta.DTO.stores.StoreUpdateDTO;
+import br.com.grupotsm.TSMMeta.DTO.stores.StoreWithTaxesDTO;
 import br.com.grupotsm.TSMMeta.services.StoreService;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,12 +16,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/stores")
 public class StoreController {
     @Autowired
     private StoreService service;
+
 
     @GetMapping()
     public ResponseEntity<Page<StoreDTO>> findALl(Pageable pageable) {
@@ -44,4 +49,14 @@ public class StoreController {
 
         return ResponseEntity.accepted().body(dto);
     }
+
+    @PutMapping("/taxes/{id}")
+    public ResponseEntity<StoreWithTaxesDTO> addTaxes(@PathVariable Long id, @RequestBody List<Long> taxesId) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+        StoreWithTaxesDTO dto = service.addTaxes(id,taxesId);
+
+        return ResponseEntity.accepted().body(dto);
+    }
 }
+

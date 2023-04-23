@@ -3,9 +3,7 @@ package br.com.grupotsm.TSMMeta.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_store")
@@ -24,7 +22,7 @@ public class Store implements Serializable {
     private List<Goal> goals = new ArrayList<>();
 
     @ManyToMany(mappedBy = "stores")
-    List<Tax> taxes = new ArrayList<>();
+    Set<Tax> taxes = new HashSet<>();
 
     public Store() {
     }
@@ -64,7 +62,7 @@ public class Store implements Serializable {
         return goals;
     }
 
-    public List<Tax> getTaxes() {
+    public Set<Tax> getTaxes() {
         return taxes;
     }
 

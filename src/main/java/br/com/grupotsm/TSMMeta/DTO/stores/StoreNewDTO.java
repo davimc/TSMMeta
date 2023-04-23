@@ -24,6 +24,14 @@ public class StoreNewDTO {
     public StoreNewDTO(Store obj) {
         name = obj.getName();
     }
+
+    public static Store fromDto(StoreNewDTO dto) {
+        Store obj = new Store();
+        obj.setName(dto.getName());
+
+        return obj;
+    }
+
     public String getName() {
         return name;
     }
