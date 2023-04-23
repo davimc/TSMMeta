@@ -1,19 +1,19 @@
 # TSMMeta
 
-## Motivação
-Projeto feito com base em um problema no qual uma empresa em específico estava tendo com a parametrização das metas mensais.
-
 ## Objetivo
-Juntar todos os gastos (fixos e variáveis) e adicionar os tipos de impostos imbutidos (impostos diretos na fonte + impostos após os primeiros)
+Calcular juntar todos os gastos de uma loja, incluindo impostos para indicar o faturamento mensal que será necessário atingir para que a loja finalize o mês sem dívidas
 
-## API
-Loja
-Imposto
-Gastos
-Meta
-Colaboradores
+## Motivação
+Projeto feito com base em um problema no qual uma empresa em específico estava tendo com a parametrização das metas mensais, onde é estipulado um valor que, caso atingido, será entregue bonificações. No entanto os valores estão sendo estípulados tendo base uma aproximação sem parâmetros como os custos da loja, gastos fixos, ocasionais e impostos.
 
-Cada um com pelo menos 3 pré cadastrados no banco de dados
+## Entidades da API
+Loja  
+Imposto  
+Gastos  
+Meta  
+Colaboradores  
+
+Cada um com pelo menos 3 pré-cadastrados no banco de dados
 
 ## Recomendações para executar a API
 (*Deploy* será realizado futuramente)  
