@@ -4,6 +4,7 @@ import br.com.grupotsm.TSMMeta.DTO.taxes.TaxDTO;
 import br.com.grupotsm.TSMMeta.DTO.taxes.TaxNewDTO;
 import br.com.grupotsm.TSMMeta.entities.Store;
 import br.com.grupotsm.TSMMeta.entities.Tax;
+import br.com.grupotsm.TSMMeta.entities.enums.TaxType;
 import br.com.grupotsm.TSMMeta.repositories.TaxRepository;
 import br.com.grupotsm.TSMMeta.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,9 +36,13 @@ public class TaxService {
 
         return repository.findByStores(store);
     }
-    protected Double sumTaxes(Store store) {
-
-        return findByStore(store).stream().mapToDouble(t -> t.getPercentage()).sum();
+    protected List<Double> sumTaxes(Store store) {
+        List<Double> taxes = new ArrayList<>();
+        for (TaxType type: TaxType.values()) {
+            Double total = findByStore(store).stream().filter(t ->type == t.getType()).mapToDouble(Tax::getPercentage).sum();
+            taxes.add(total);
+        }
+        return taxes;
     }
     public TaxDTO findDTO(Long id) {
         Tax obj = find(id);

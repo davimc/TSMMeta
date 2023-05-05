@@ -1,18 +1,11 @@
 package br.com.grupotsm.TSMMeta.services;
 
-import br.com.grupotsm.TSMMeta.DTO.taxes.TaxDTO;
-import br.com.grupotsm.TSMMeta.DTO.taxes.TaxNewDTO;
 import br.com.grupotsm.TSMMeta.entities.Store;
-import br.com.grupotsm.TSMMeta.entities.Tax;
-import br.com.grupotsm.TSMMeta.repositories.TaxRepository;
-import br.com.grupotsm.TSMMeta.services.exceptions.ObjectNotFoundException;
-import br.com.grupotsm.TSMMeta.utils.DateHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class SpendingService {
@@ -22,13 +15,13 @@ public class SpendingService {
     @Autowired
     private DebitService debitService;
     public Double calculateExpenses(Store store, LocalDate date) {
-        Double taxes = getTaxes(store);
+        List<Double> taxes = getTaxes(store);
         Double debits = getDebits(store,date);
 
         return getExpenses(debits, taxes);
     }
 
-    private Double getTaxes(Store store) {
+    private List<Double> getTaxes(Store store) {
         return taxService.sumTaxes(store);
     }
 
@@ -36,7 +29,8 @@ public class SpendingService {
         return debitService.sumDebits(store,date);
     }
 
-    private Double getExpenses(Double debits, Double taxes) {
-        return debits * taxes / (100.0 - taxes);
+    private Double getExpenses(Double debits, List<Double> taxes) {
+        return taxes.stream().reduce(debits,(subtotal, tax) -> (subtotal + ((subtotal * tax)/100-tax)));
+        //return debits * taxees / (100.0 - taxes);
     }
 }
