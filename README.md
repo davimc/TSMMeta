@@ -17,12 +17,19 @@ Cada um com pelo menos 3 pré-cadastrados no banco de dados
 
 ## Recomendações para executar a API
 (*Deploy* será realizado futuramente)  
-Será necessário clonar o pacote e executar através de uma IDE (utilizei o Intellij)  
-Ao clonar vá até o arquivo TSMMetaApplication e execute (Run)  
-Caso utilize o Postman aqui está um link direto da Collection de requisições -> [Postman Collection](https://api.postman.com/collections/9357552-160a0c51-c662-4b41-9e7e-fb4dd9a30046?access_key=)
+### Necessário 
+* Java 17  
+* Maven 3.1.0  
+### Executando
+* Clone ou baixe o zip deste projeto  
+* Execute o comando mvn spring-boot:run para executar a sua aplicação.  
+  *  Você também pode utilizar o mvnw que vem no arquivo ZIP do mesmo jeito mvnw spring-boot:run  
+* Para acesso dos endopoints recomendo o uso de uma plataforma para testes de API, como o postman, insominia ou de sua preferência
+  *  Caso utilize o Postman aqui está um link direto da Collection de requisições -> [Postman Collection](https://api.postman.com/collections/9357552-160a0c51-c662-4b41-9e7e-fb4dd9a30046?access_key=)
 
 ## Trabalhos futuros 
 - [x] Criar estrutura do cálculo da meta
+- [ ] Criar lógica para dívidas recorrentes (conta de luz, água, salário de funcionários)
 - [x] Este projeto foi pausado para uma implementação usando arquitetura de microserviços fazendo integração com outro projeto [ManagementSys](https://github.com/davimc/ManagementSys)
 
 ## Base do cálculo
