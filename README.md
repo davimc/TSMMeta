@@ -22,10 +22,8 @@ Ao clonar vá até o arquivo TSMMetaApplication e execute (Run)
 Caso utilize o Postman aqui está um link direto da Collection de requisições -> [Postman Collection](https://api.postman.com/collections/9357552-160a0c51-c662-4b41-9e7e-fb4dd9a30046?access_key=)
 
 ## Trabalhos futuros 
-~~Criar estrutura do cálculo da meta~~  
-Implementar dívidas que se repetem todo mês(aluguel e salários)  
-Ambiente de dev com Postegres SQL (está utilizando o H2)  
-Deploy no railway  
+- [x] Criar estrutura do cálculo da meta
+- [x] Este projeto foi pausado para uma implementação usando arquitetura de microserviços fazendo integração com outro projeto [ManagementSys](https://github.com/davimc/ManagementSys)
 
 ## Base do cálculo
 -> x = (y * z) / 100 - z  
