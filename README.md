@@ -25,7 +25,7 @@ Cada um com pelo menos 3 pré-cadastrados no banco de dados
 * Execute o comando mvn spring-boot:run para executar a sua aplicação.  
   *  Você também pode utilizar o mvnw que vem no arquivo ZIP do mesmo jeito mvnw spring-boot:run  
 * Para acesso dos endopoints recomendo o uso de uma plataforma para testes de API, como o postman, insominia ou de sua preferência
-  *  Caso utilize o Postman aqui está um link direto da Collection de requisições -> [Postman Collection](https://api.postman.com/collections/9357552-160a0c51-c662-4b41-9e7e-fb4dd9a30046?access_key=)
+  *  Caso utilize o Postman aqui está um link para importar minha Collection de requisições -> [Postman Collection](https://api.postman.com/collections/9357552-160a0c51-c662-4b41-9e7e-fb4dd9a30046?access_key=PMAT-01H2N1WH9F8PYT2Y91N9HYPQM4)
 
 ## Trabalhos futuros 
 - [x] Criar estrutura do cálculo da meta
