@@ -1,6 +1,5 @@
 package br.com.grupotsm.TSMMeta.DTO.employees;
 
-import br.com.grupotsm.TSMMeta.entities.Debit;
 import br.com.grupotsm.TSMMeta.entities.Employee;
 
 import java.io.Serializable;

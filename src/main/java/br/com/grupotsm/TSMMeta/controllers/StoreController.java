@@ -49,14 +49,5 @@ public class StoreController {
 
         return ResponseEntity.accepted().body(dto);
     }
-
-    @PutMapping("/taxes/{id}")
-    public ResponseEntity<StoreWithTaxesDTO> addTaxes(@PathVariable Long id, @RequestBody List<Long> taxesId) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-        StoreWithTaxesDTO dto = service.addTaxes(id,taxesId);
-
-        return ResponseEntity.accepted().body(dto);
-    }
 }
 

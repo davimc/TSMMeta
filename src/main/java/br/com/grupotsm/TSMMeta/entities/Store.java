@@ -18,11 +18,6 @@ public class Store implements Serializable {
     private List<Employee> currentEmployees = new ArrayList<>();
     @OneToMany(mappedBy = "originalStore")
     private List<Employee> originalEmployees = new ArrayList<>();
-    @OneToMany(mappedBy = "store")
-    private List<Goal> goals = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "stores")
-    Set<Tax> taxes = new HashSet<>();
 
     public Store() {
     }
@@ -58,13 +53,8 @@ public class Store implements Serializable {
         return currentEmployees;
     }
 
-    public List<Goal> getGoals() {
-        return goals;
-    }
 
-    public Set<Tax> getTaxes() {
-        return taxes;
-    }
+
 
     @Override
     public boolean equals(Object o) {
